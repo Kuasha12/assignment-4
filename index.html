@@ -25,10 +25,7 @@
       }
     </style>
   </head>
-
   <body>
-    <!-- ================= HEADER ================= -->
-
     <section>
       <div class="py-14 border-b-2 border-gray-300 mx-auto w-[1110px]">
         <h1 class="font-bold text-[32px] mb-6">Job Application Tracker</h1>
@@ -46,7 +43,7 @@
               <h1>Interview</h1>
               <p
                 id="interview-count"
-                class="text-green-500 text-[30px] font-bold">
+                class="text-green-500 text-[30px] font-bold hover:bg-green-400">
                 0
               </p>
             </div>
@@ -55,7 +52,9 @@
           <div class="w-[359px] py-5 bg-[#f6ecec78] rounded-md">
             <div class="mx-auto w-[310px]">
               <h1>Rejected</h1>
-              <p id="rejected-count" class="text-red-500 text-[30px] font-bold">
+              <p
+                id="rejected-count"
+                class="text-red-500 text-[30px] font-bold hover:bg-red-400">
                 0
               </p>
             </div>
@@ -63,16 +62,10 @@
         </div>
       </div>
     </section>
-
-    <!-- ================= JOB TITLE ================= -->
-
     <div class="flex justify-between mx-auto w-[1110px] mt-6">
       <h1 class="font-bold text-[24px]">Available Jobs</h1>
       <p id="job-length" class="text-gray-400">0 jobs</p>
     </div>
-
-    <!-- ================= TABS ================= -->
-
     <div class="flex w-[1110px] mx-auto gap-3 mt-6 mb-5">
       <button id="all-btn" class="btn btn-primary rounded-md">All</button>
       <button id="interview-btn" class="btn text-gray-400 rounded-md">
@@ -82,9 +75,6 @@
         Rejected
       </button>
     </div>
-
-    <!-- ================= JOB CONTAINER ================= -->
-
     <section class="mb-10">
       <div id="job-container" class="space-y-6"></div>
     </section>

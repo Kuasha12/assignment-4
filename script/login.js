@@ -92,8 +92,6 @@ function setStatus(index, status) {
   renderJobs();
 }
 
-// ===== TAB BUTTON EVENTS =====
-
 allBtn.addEventListener("click", () => {
   currentFilter = "all";
   setActive(allBtn);
