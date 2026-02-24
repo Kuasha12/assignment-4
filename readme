@@ -1,0 +1,10 @@
+//Ans: 1----------
+document.getElementById("box");
+
+document.getElementByIdClassName('item');
+
+document.querySelector(".item");
+
+document.querySelectorAll('.item');
+
+//Ans: 2------------
