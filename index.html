@@ -43,7 +43,7 @@
               <h1>Interview</h1>
               <p
                 id="interview-count"
-                class="text-green-500 text-[30px] font-bold hover:bg-green-400">
+                class="text-green-500 text-[30px] font-bold">
                 0
               </p>
             </div>
@@ -52,9 +52,7 @@
           <div class="w-[359px] py-5 bg-[#f6ecec78] rounded-md">
             <div class="mx-auto w-[310px]">
               <h1>Rejected</h1>
-              <p
-                id="rejected-count"
-                class="text-red-500 text-[30px] font-bold hover:bg-red-400">
+              <p id="rejected-count" class="text-red-500 text-[30px] font-bold">
                 0
               </p>
             </div>
@@ -68,10 +66,14 @@
     </div>
     <div class="flex w-[1110px] mx-auto gap-3 mt-6 mb-5">
       <button id="all-btn" class="btn btn-primary rounded-md">All</button>
-      <button id="interview-btn" class="btn text-gray-400 rounded-md">
+      <button
+        id="interview-btn"
+        class="btn text-gray-400 rounded-md hover:bg-green-400">
         Interview
       </button>
-      <button id="rejected-btn" class="btn text-gray-400 rounded-md">
+      <button
+        id="rejected-btn"
+        class="btn text-gray-400 rounded-md hover:bg-red-400">
         Rejected
       </button>
     </div>
