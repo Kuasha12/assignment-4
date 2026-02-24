@@ -1,4 +1,5 @@
 //Ans: 1----------
+
 document.getElementById("box");
 
 document.getElementByIdClassName('item');
@@ -8,3 +9,37 @@ document.querySelector(".item");
 document.querySelectorAll('.item');
 
 //Ans: 2------------
+
+const newDiv = document.createElement("div");
+
+newDiv.innerText = "Hello World";
+
+document.body.appendChild(newDiv);
+
+//Ans: 3---------------
+
+<div id="parent">
+  <button id="child">Click</button>
+</div>
+
+document.getElementById("child").addEventListener("click", () => {
+console.log("Child Clicked");
+});
+
+document.getElementById("parent").addEventListener("click", () => {
+console.log("Parent Clicked");
+});
+
+//Ans:4-----------
+
+document.getElementById("parent").addEventListener("click", function(e) {
+if (e.target.tagName === "BUTTON") {
+console.log("Button Clicked");
+}
+});
+
+//Ans:5----------------
+
+form.addEventListener("submit", function(e) {
+e.preventDefault();
+});
