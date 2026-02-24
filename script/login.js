@@ -20,7 +20,6 @@ async function loadJobs() {
 function renderJobs() {
   container.innerHTML = "";
 
-  // Count update
   totalCount.innerText = jobs.length;
   interviewCount.innerText = jobs.filter(
     (j) => j.status === "interview",
