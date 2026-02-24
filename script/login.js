@@ -72,12 +72,12 @@ function renderJobs() {
 
       <div class="flex gap-3 mt-5">
         <button onclick="setStatus(${jobs.indexOf(job)}, 'interview')"
-          class="btn w-32 text-green-500 border border-green-600">
+          class="btn w-32 text-green-500 border border-green-600 hover:bg-green-400">
           INTERVIEW
         </button>
 
         <button onclick="setStatus(${jobs.indexOf(job)}, 'rejected')"
-          class="btn w-32 text-red-500 border border-red-600">
+          class="btn w-32 text-red-500 border border-red-600 hover:bg-red-400">
           REJECTED
         </button>
       </div>
