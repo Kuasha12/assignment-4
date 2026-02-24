@@ -4,27 +4,51 @@ const jobLength = document.getElementById("job-length");
 const interviewCount = document.getElementById("interview-count");
 const rejectedCount = document.getElementById("rejected-count");
 
+const allBtn = document.getElementById("all-btn");
+const interviewBtn = document.getElementById("interview-btn");
+const rejectedBtn = document.getElementById("rejected-btn");
+
 let jobs = [];
+let currentFilter = "all";
 
 async function loadJobs() {
   const response = await fetch("jobs.json");
   jobs = await response.json();
-
   renderJobs();
 }
 
 function renderJobs() {
   container.innerHTML = "";
 
+  // Count update
   totalCount.innerText = jobs.length;
-  jobLength.innerText = jobs.length + " jobs";
-
   interviewCount.innerText = jobs.filter(
     (j) => j.status === "interview",
   ).length;
   rejectedCount.innerText = jobs.filter((j) => j.status === "rejected").length;
 
-  jobs.forEach((job, index) => {
+  let filteredJobs = jobs;
+
+  if (currentFilter === "interview") {
+    filteredJobs = jobs.filter((j) => j.status === "interview");
+  }
+
+  if (currentFilter === "rejected") {
+    filteredJobs = jobs.filter((j) => j.status === "rejected");
+  }
+
+  jobLength.innerText = filteredJobs.length + " jobs";
+
+  if (filteredJobs.length === 0) {
+    container.innerHTML = `
+      <div class="text-center text-gray-400 text-xl mt-10">
+        No jobs Available
+      </div>
+    `;
+    return;
+  }
+
+  filteredJobs.forEach((job, index) => {
     const card = document.createElement("div");
     card.className = "w-[1110px] mx-auto bg-[#f6ecec78] rounded-md p-6";
 
@@ -34,10 +58,6 @@ function renderJobs() {
           <h1 class="font-bold text-xl">${job.company}</h1>
           <p class="text-gray-400">${job.position}</p>
         </div>
-        <span onclick="deleteJob(${index})"
-          class="border border-gray-300 rounded-full px-3 py-3 cursor-pointer">
-          <i class="fa-regular fa-trash-can"></i>
-        </span>
       </div>
 
       <p class="text-gray-400 mt-3">
@@ -51,12 +71,12 @@ function renderJobs() {
       <p class="mt-3">${job.description}</p>
 
       <div class="flex gap-3 mt-5">
-        <button onclick="setStatus(${index}, 'interview')"
+        <button onclick="setStatus(${jobs.indexOf(job)}, 'interview')"
           class="btn w-32 text-green-500 border border-green-600">
           INTERVIEW
         </button>
 
-        <button onclick="setStatus(${index}, 'rejected')"
+        <button onclick="setStatus(${jobs.indexOf(job)}, 'rejected')"
           class="btn w-32 text-red-500 border border-red-600">
           REJECTED
         </button>
@@ -72,27 +92,34 @@ function setStatus(index, status) {
   renderJobs();
 }
 
-function deleteJob(index) {
-  jobs.splice(index, 1);
+// ===== TAB BUTTON EVENTS =====
+
+allBtn.addEventListener("click", () => {
+  currentFilter = "all";
+  setActive(allBtn);
   renderJobs();
+});
+
+interviewBtn.addEventListener("click", () => {
+  currentFilter = "interview";
+  setActive(interviewBtn);
+  renderJobs();
+});
+
+rejectedBtn.addEventListener("click", () => {
+  currentFilter = "rejected";
+  setActive(rejectedBtn);
+  renderJobs();
+});
+
+function setActive(activeBtn) {
+  [allBtn, interviewBtn, rejectedBtn].forEach((btn) => {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("text-gray-400");
+  });
+
+  activeBtn.classList.add("btn-primary");
+  activeBtn.classList.remove("text-gray-400");
 }
 
 loadJobs();
-
-// let interviwCount = 0;
-
-// const interviwBut = document.getElementById("interview-btn");
-
-// const statusBtn = document.getElementById("status-btn");
-// const interviwCountText = document.getElementById("interview-count");
-
-// interviwBut.addEventListener("click", function () {
-//   if (statusBtn.innerText === "NOT APPLIED" && interviwCount < 8) {
-//     interviwCount++;
-//     interviwCountText.innerText = interviwCount;
-
-//     statusBtn.innerText = "INTERVIEW";
-//     statusBtn.classList.remove("bg-gray-300");
-//     statusBtn.classList.add("bg-green-400", "text-white");
-//   }
-// });
